@@ -66,10 +66,9 @@ ylabel!("Capital")
 
 # Problem set 1, Question 5 with Cobb-Douglass Prod function
 # F(kt) = Aktᵅ
-cobb_alpha = 0.5
-cobb_A = 1
-cobb_beta = 0.95
-cobb_delta = 0.1
+cobb_alpha = 0.999 # orig: 0.5
+cobb_A = 0.5 # 1
+cobb_delta = 0.01 # 0.1
 
 cobb_ksharp = (cobb_delta / (cobb_alpha*cobb_A))^(1/cobb_alpha-1) # αAkᵅ-1 = δ, ksharp = (δ/ αA)^1/ α - 1
 cobb_csharp = (cobb_A * cobb_ksharp^cobb_alpha) - (cobb_delta * cobb_ksharp) # c_shrap = F(k_shrap) - delta*k_sharp
