@@ -16,6 +16,7 @@ beta = 0.95
 sigma = 2.0
 delta_old = 0.1
 delta_new = 0.2
+theta = (1 / beta) - 1
 Ā = 1
 
 T = 50
@@ -65,7 +66,7 @@ end
 
 eigenVectorDivision = (eigenVectors[1, stableEigenIndex] / eigenVectors[2, stableEigenIndex])
 simulation_wrapper = fill(0.0, (2, T))
-simulation_wrapper[2, 1] = capital_deviation
+simulation_wrapper[2, 1] = k_star_new #capital_deviation
 simulation_wrapper[1, 1] = eigenVectorDivision * simulation_wrapper[2, 1]
 
 for t = 2:T
