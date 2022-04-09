@@ -14,18 +14,19 @@ using Plots;
 using Random
 plotly();
 
-include("./equation-builders/DSGELogUtilityEquationBuilder.jl")
-# using .DSGELogUtilityEquationBuilder;
+include("../DSGE/equation-builders/DSGELogUtilityEquationBuilder.jl")
+using DSGELogUtilityEquationBuilder
 
 # Parameters used in the model
 beta = 0.95 # discount factor
 alpha = 0.3 # capital share
 delta = 0.1 # depreciation rate
 rho = 0.9 # autocorrelation of productivity
+sigma = 2
 
 # Getting non-stochastic steady-state values
 # See function implementation for details. Function form is used from Problem Set 6, Question 2
-k_bar = DSGELogUtilityEquationBuilder.getSteadyStateCapital(alpha, beta, delta)
+k_bar =  ( ( 1 - beta + delta * beta) / (alpha * beta))^(1/(alpha - 1)) #DSGELogUtilityEquationBuilder.getSteadyStateCapital(alpha, beta, delta)
 s_bar = DSGELogUtilityEquationBuilder.getSteadyStateProductivity(1)
 c_bar = DSGELogUtilityEquationBuilder.getSteadyStateConsumption(k_bar, alpha, delta, s_bar)
 
@@ -127,7 +128,6 @@ for j = 1:T
     # This is the code from MATLAB
     # c_t[j] = (-Q_new_inv[1, 2] / Q_new_inv[1, 1]) * k_t[j] + (-Q_new_inv[1, 3] / Q_new_inv[1, 1]) * productivity_states_wrapper[j]
     # Alternative:
-    # THIS IS THE CONSUMPTION FUNCTION!
     c_t[j] = c_coeff_k * k_t[j] + c_coeff_s * productivity_states_wrapper[j]
     k_t[j+1] = b1 * k_t[j] + b2 * productivity_states_wrapper[j] + b3 * c_t[j]
 end

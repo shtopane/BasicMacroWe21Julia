@@ -1,4 +1,5 @@
-module DSGEHelperFunctions
+module DSGELogUtilityEquationBuilder
+
 # k̄ = (1/β - 1 + δ) ^ 1/ α - 1
 #           α
 function getSteadyStateCapital(alpha, beta, delta)
@@ -24,4 +25,6 @@ function getLinearCoefficients(alpha, beta, delta, k_bar, c_bar)
 
     return (round(a1, digits=4), round(a2, digits=4), round(b1, digits=4), round(b2, digits=4), round(b3, digits=4))
 end
+
+export getSteadyStateCapital,getSteadyStateConsumption, getSteadyStateProductivity
 end
